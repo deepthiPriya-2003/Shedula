@@ -30,7 +30,7 @@ export default function LoginForm() {
     const storedUser = localStorage.getItem("user");
 
     if (!storedUser) {
-      setError("No account found. Please sign up first.");
+      setError("No account found. Please sign up.");
       return;
     }
 
@@ -44,12 +44,14 @@ export default function LoginForm() {
       }
       router.push("/");
     } else {
-      setError("Invalid email or password");
+      setError("No account found. Please sign up.");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="fixed inset-0 w-screen h-screen 
+       bg-gradient-to-br from-teal-400 via-cyan-500 to-blue-600 
+       flex items-center justify-center p-4">
       <div className="bg-white w-[350px] p-6 rounded-3xl shadow-xl">
 
        <div className="flex justify-center">
@@ -132,8 +134,7 @@ export default function LoginForm() {
 
         <p className="text-center text-sm mt-4">
           Don't have an account?{" "}
-          <span
-            onClick={() => router.push("/signup")}
+          <span onClick={() => router.push("/signup")}
             className="text-teal-500 cursor-pointer font-medium"
           >
             Signup

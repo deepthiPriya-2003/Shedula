@@ -21,8 +21,11 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white w-[350px] p-6 rounded-3xl shadow-xl">
+    <div className="fixed inset-0 w-screen h-screen 
+      bg-gradient-to-br from-teal-400 via-cyan-500 to-blue-600 
+      flex items-center justify-center p-4">
+        
+    <div className="bg-white w-[350px] p-6 rounded-3xl shadow-xl">
 
         <div className="flex justify-center">
           <div >
@@ -71,5 +74,6 @@ export default function SignupForm() {
 
       </div>
     </div>
+   
   );
 }
