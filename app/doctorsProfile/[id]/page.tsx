@@ -16,7 +16,7 @@ interface Doctor {
   description: string;
 }
 
-export default function DoctorProfile() {   
+export default function DoctorProfile() {  
 
   const router = useRouter();
   const params = useParams();
@@ -47,82 +47,102 @@ export default function DoctorProfile() {
     return <div>Loading...</div>;
   }
 
-  return (
-  <div className="min-h-screen w-full bg-gradient-to-br from-teal-400 via-cyan-500 to-blue-600 text-white flex justify-center items-center px-6 py-10">
-    
-    <div className="w-full max-w-6xl backdrop-blur-md bg-white border border-white/30 rounded-2xl shadow-2xl p-8 text-[#003366]">
-      
-      <div className="flex flex-col md:flex-row gap-10 items-center">
+
+return (
+  <div className="min-h-screen bg-gradient-to-br from-teal-500 via-cyan-500 to-blue-600 flex justify-center py-10 px-4">
+
+    <div className="w-full max-w-4xl">
+
+      <div className="bg-white rounded-2xl shadow-xl p-6 flex items-center justify-between">
         
-         <div className="text-center md:w-1/2">
-          <img
-            src={doctorDetails.image}
-            alt={doctorDetails.name}
-            className="w-80 h-80 object-cover rounded-2xl shadow-lg mx-auto"
-          />
-          <h2 className="font-bold text-xl mt-4">
+        <div>
+          <h1 className="text-2xl font-bold text-[#003366]">
             {doctorDetails.name}
-          </h2>
+          </h1>
+          <p className="text-gray-600">{doctorDetails.speciality}</p>
+          <p className="text-teal-600 font-semibold mt-1">
+            {doctorDetails.experience} Experience
+          </p>
         </div>
 
-        <div className="md:w-1/2 space-y-3">
-          <h1 className="text-3xl font-bold mb-4">
-            {doctorDetails.speciality}
-          </h1>
+        <img
+          src={doctorDetails.image}
+          alt={doctorDetails.name}
+          className="w-24 h-24 rounded-xl object-cover"
+        />
+      </div>
 
-          <p><strong>Availability:</strong> {doctorDetails.availability}</p>
-          <p><strong>Experience:</strong> {doctorDetails.experience}</p>
+      <div className="bg-white rounded-2xl shadow-md mt-6 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        
+        <div>
+          <img src="https://res.cloudinary.com/dpj5lzzyz/image/upload/v1771745544/Auto_Layout_Horizontal_bwiczy.png" className="w-10 mx-auto mb-2" />
+          <p className="font-bold text-[#003366]">5,000+</p>
+          <p className="text-gray-500 text-sm">Patients</p>
+        </div>
 
-          <p className="flex items-center gap-2">
-            <strong>Status:</strong>
-            <span
-              className={`w-3 h-3 rounded-full ${
-                doctorDetails.status === "Available Today"
-                  ? "bg-green-500"
-                  : "bg-red-500"
-              }`}
-            ></span>
-            <span className="font-semibold">
-              {doctorDetails.status}
-            </span>
+        <div>
+          <img src="https://res.cloudinary.com/dpj5lzzyz/image/upload/v1771745510/Auto_Layout_Horizontal_2_actfkd.svg" className="w-10 mx-auto mb-2" />
+          <p className="font-bold text-[#003366]">
+            {doctorDetails.experience}
           </p>
+          <p className="text-gray-500 text-sm">Years Exp.</p>
+        </div>
 
-          <p><strong>Consultation Fee:</strong> {doctorDetails.fee}</p>
+        <div>
+          <img src="https://res.cloudinary.com/dpj5lzzyz/image/upload/v1771745463/Auto_Layout_Horizontal_c2htoq.svg" className="w-10 mx-auto mb-2" />
+          <p className="font-bold text-[#003366]">4.8</p>
+          <p className="text-gray-500 text-sm">Rating</p>
+        </div>
 
-          <div className="mt-6">
-            {doctorDetails.status === "Available Today" ? (
-              <Link href="/BookAppointment">
-                <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl shadow-md transition duration-300">
-                  Book Appointment
-                </button>
-              </Link>
-            ) : (
-              <button
-                disabled
-                className="bg-gray-400 text-white px-6 py-3 rounded-xl"
-              >
-                Not Available
-              </button>
-            )}
-          </div>
+        <div>
+          <img src="https://res.cloudinary.com/dpj5lzzyz/image/upload/v1771745488/Auto_Layout_Horizontal_1_hf11bx.svg" className="w-10 mx-auto mb-2" />
+          <p className="font-bold text-[#003366]">4,942</p>
+          <p className="text-gray-500 text-sm">Reviews</p>
         </div>
       </div>
 
-      <div className="mt-10 border-t border-white/30 pt-6">
-        <p className="font-medium leading-relaxed">
+      <div className="bg-white rounded-2xl shadow-md mt-6 p-6">
+        <h2 className="text-lg font-bold text-[#003366] mb-3">
+          About Doctor
+        </h2>
+        <p className="text-gray-600">
           {doctorDetails.description}
         </p>
-
-        <div className="mt-6">
-          <button
-            onClick={() => router.back()}
-            className="text-dark underline hover:text-gray-200 transition"
-          >
-            Back
-          </button>
-        </div>
       </div>
+
+      <div className="bg-white rounded-2xl shadow-md mt-6 p-6">
+        <h2 className="text-lg font-bold text-[#003366] mb-3">
+          Service & Specialization
+        </h2>
+        <p><strong>Specialization:</strong> {doctorDetails.speciality}</p>
+        <p><strong>Consultation Fee:</strong> {doctorDetails.fee}</p>
+      </div>
+
+      <div className="bg-white rounded-2xl shadow-md mt-6 p-6">
+        <h2 className="text-lg font-bold text-[#003366] mb-3">
+          Availability For Consulting
+        </h2>
+        <p>{doctorDetails.availability}</p>
+      </div>
+
+      <div className="mt-8">
+        {doctorDetails.status === "Available Today" ? (
+          <Link href="/BookAppointment">
+            <button className="w-full bg-teal-500 hover:bg-teal-600 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg transition duration-300">
+              Book Appointment
+            </button>
+          </Link>
+        ) : (
+          <button
+            disabled
+            className="w-full bg-gray-400 text-white py-4 rounded-2xl text-lg"
+          >
+            Not Available
+          </button>
+        )}
+      </div>
+
     </div>
   </div>
-)
+);
 }

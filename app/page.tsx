@@ -73,7 +73,7 @@ return (
       
       <div className="flex items-center gap-3">
     <IoPersonCircleSharp size={45} />
-    <h1 className="font-semibold text-lg">Hello, Priya </h1>
+    <h1 className="font-semibold text-lg">Hello </h1>
   </div>
 
   
