@@ -13,40 +13,46 @@ export default function LoginForm() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const loggedIn = sessionStorage.getItem("loggedIn");
-    if (loggedIn) {
-      router.push("/");
-    }
-  }, [router]);
+  const loggedIn =
+    localStorage.getItem("loggedIn") ||
+    sessionStorage.getItem("loggedIn");
+
+  if (loggedIn === "true") {
+    router.push("/");
+  }
+}, [router]);
 
   const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!email || !password) {
-      setError("All fields are required");
-      return;
-    }
+  if (!email || !password) {
+    setError("All fields are required");
+    return;
+  }
 
-    const storedUser = localStorage.getItem("user");
+  const storedUser = localStorage.getItem("user");
 
-    if (!storedUser) {
-      setError("No account found. Please sign up.");
-      return;
-    }
+  if (!storedUser) {
+    setError("No account found. Please sign up.");
+    return;
+  }
 
-    const user = JSON.parse(storedUser);
+  const user = JSON.parse(storedUser);
 
-    if (user.email === email && user.password === password) {
-      if (remember) {
-        localStorage.setItem("loggedIn", "true");
-      } else {
-        sessionStorage.setItem("loggedIn", "true");
-      }
-      router.push("/");
+  if (user.email === email && user.password === password) {
+    if (remember) {
+      localStorage.setItem("loggedIn", "true");
+      sessionStorage.removeItem("loggedIn");
     } else {
-      setError("No account found. Please sign up.");
+      sessionStorage.setItem("loggedIn", "true");
+      localStorage.removeItem("loggedIn");
     }
-  };
+
+    router.push("/");
+  } else {
+    setError("Invalid credentials.");
+  }
+};
 
   return (
     <div className="fixed inset-0 w-screen h-screen 

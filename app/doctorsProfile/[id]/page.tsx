@@ -25,11 +25,14 @@ export default function DoctorProfile() {
   const [doctorDetails, setDoctorDetails] = useState<Doctor | null>(null);
 
   useEffect(() => {
-    const loggedIn = sessionStorage.getItem("loggedIn");
-    if (!loggedIn) {
-      router.push("/login");
-    }
-  }, [router]);
+  const loggedIn =
+    localStorage.getItem("loggedIn") ||
+    sessionStorage.getItem("loggedIn");
+
+  if (loggedIn !== "true") {
+    router.push("/login");
+  }
+}, [router]);
 
   useEffect(() => {
     const getDoctorData = async () => {
@@ -127,7 +130,7 @@ return (
 
       <div className="mt-8">
         {doctorDetails.status === "Available Today" ? (
-          <Link href="/BookAppointment">
+          <Link href={`/book-appointment/${doctorDetails.id}`}>
             <button className="w-full bg-teal-500 hover:bg-teal-600 text-white py-4 rounded-2xl text-lg font-semibold shadow-lg transition duration-300">
               Book Appointment
             </button>

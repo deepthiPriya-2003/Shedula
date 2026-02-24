@@ -2,14 +2,25 @@
 import Image from 'next/image'
 
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function SignupForm() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(""); 
+
+  useEffect(() => {
+  const loggedIn =
+    localStorage.getItem("loggedIn") ||
+    sessionStorage.getItem("loggedIn");
+
+  if (loggedIn === "true") {
+    router.push("/");
+  }
+   }, [router]);
+
 
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
