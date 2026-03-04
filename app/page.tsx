@@ -4,7 +4,8 @@ import { useEffect, useState, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { IoPersonCircleSharp } from "react-icons/io5";
+import { IoPersonCircleSharp } from "react-icons/io5"; 
+import Navbar from "@/components/Navbar";
 
 interface Doctor {
   id: string;
@@ -97,74 +98,18 @@ useEffect(() => {
 
 return (
    <div className="min-h-screen w-full bg-gradient-to-br from-teal-400 via-cyan-500 to-blue-600 text-white">
-     <div className="bg-[#90c8ec] shadow-sm px-6 md:px-12 py-4">
-  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
     
-    
-    <div className="flex items-center justify-between md:justify-start gap-3">
-      <div className="flex items-center gap-3">
-        <IoPersonCircleSharp size={40} />
-        <h1 className="font-semibold text-lg text-white">Hello</h1>
-      </div>
-    </div>
+     <Navbar
+  searchInput={searchInput}
+  setSearchInput={setSearchInput}
+  filteredSuggestions={filteredSuggestions}
+  doctors={doctors}
+  setFilteredDoctors={setFilteredDoctors}
+  setShowSuggestions={setShowSuggestions}
+  showSuggestions={showSuggestions}
+/>
+  
 
-    
-    <div className="relative w-full md:max-w-md">
-      <input
-        type="search"
-        placeholder="Search doctors or specialization..."
-        value={searchInput}
-        onChange={onChangeInput}
-        onFocus={() => setShowSuggestions(true)}
-        onClick={(e) => e.stopPropagation()}
-        className="w-full p-3 rounded-full 
-        bg-white text-[#003366]
-        outline-none shadow-sm
-        focus:ring-2 focus:ring-teal-400"
-      />
-
-      {showSuggestions && searchInput && filteredSuggestions.length > 0 && (
-        <div className="absolute top-14 left-0 w-full bg-white rounded-xl shadow-lg border border-gray-200 z-50">
-          {filteredSuggestions.map((item, index) => (
-            <div
-              key={index}
-              onClick={() => {
-                setSearchInput(item);
-                const filteredDoc = doctors.filter((doctor) =>
-                  doctor.name.toLowerCase().includes(item.toLowerCase()) ||
-                  doctor.speciality.toLowerCase().includes(item.toLowerCase())
-                );
-                setFilteredDoctors(filteredDoc);
-                setShowSuggestions(false);
-              }}
-              className="px-4 py-3 hover:bg-gray-100 cursor-pointer text-[#003366]"
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-
-    
-    <div className="flex justify-end">
-      <button
-        onClick={handleLogout}
-        className="border-2 border-[#FFFFFF]
-        text-[#FFFFFF]
-        px-5 py-2 
-        rounded-xl 
-        font-semibold 
-        transition-all duration-300
-        hover:bg-teal-500
-        hover:text-white"
-      >
-        Logout
-      </button>
-    </div>
-
-  </div>
-</div>
 
      <div className="flex justify-center px-6 py-10">
   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
