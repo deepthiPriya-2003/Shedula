@@ -145,6 +145,13 @@ export default function LoginForm() {
           >
             Signup
           </span>
+        </p> 
+        <p>
+          if you are a doctor {" "}
+          <span onClick={() => router.push("/doctor-login")}
+            className="text-teal-500 cursor-pointer font-medium"
+          ></span>
+
         </p>
 
       </div>

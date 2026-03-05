@@ -29,7 +29,7 @@ export default function Navbar({
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    router.push("/");
+    router.push("/login");
   };
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
