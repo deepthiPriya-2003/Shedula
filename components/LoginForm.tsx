@@ -16,8 +16,9 @@ export default function LoginForm() {
   const loggedIn =
     localStorage.getItem("loggedIn") ||
     sessionStorage.getItem("loggedIn");
+   
 
-  if (loggedIn === "true") {
+  if (loggedIn === "true") { 
     router.push("/");
   }
 }, [router]);
@@ -146,11 +147,13 @@ export default function LoginForm() {
             Signup
           </span>
         </p> 
-        <p>
-          if you are a doctor {" "}
+        <p className="text-center text-sm mt-4">
+          Are you a doctor? {" "}
           <span onClick={() => router.push("/doctor-login")}
             className="text-teal-500 cursor-pointer font-medium"
-          ></span>
+          >
+            Login
+          </span>
 
         </p>
 

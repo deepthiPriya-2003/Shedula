@@ -49,7 +49,7 @@ export default function PrescriptionPage() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-100 p-6">
+    <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-teal-400 via-cyan-500 to-blue-600 p-6">
 
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
 

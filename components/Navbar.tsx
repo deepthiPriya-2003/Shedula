@@ -29,6 +29,8 @@ export default function Navbar({
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
+    localStorage.removeItem("loggedIn");
+  sessionStorage.removeItem("loggedIn");
     router.push("/login");
   };
 
